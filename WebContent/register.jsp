@@ -8,7 +8,7 @@
 </head>
 <body>
    <center>
-   <h3>欢迎您，请注册</h3>
+   <h3>欢迎您，请开始注册</h3>
        <form action="user_reg" method="post">
           用户名:<input name="username" type="text" /><br><br>
           密   码:<input name="password" type="text"/><br><br>
