@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    <!-- 配置类对应的数据库   
+       name表示类名     table表示表名
+    -->
+    <hibernate-mapping>
+    <class  name="cn.itcast.entity.User" table="tb_user">
+    <!-- name表示类中
+         coulmn表示数据库表中
+     -->
+       <id name="uid" column="uid">
+         <generator class="native"></generator>   <!-- id主键的自增长 -->
+       </id>
+       
+       <property name="username" ></property>
+       <property name="password" column="password"></property>
+    
+    </class>
+    </hibernate-mapping>

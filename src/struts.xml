@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+  <!DOCTYPE struts PUBLIC
+  "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+  "http://struts.apache.org/dtds/struts-2.3.dtd">
+  
+  <struts>
+      <package name="testspring" namespace="/" extends="struts-default">
+          <interceptors>
+      		<interceptor  name="privilege" class="cn.itcast.interceptor.PrivilegeInterceptor"/> 
+  	  		<interceptor-stack name="myStack">
+  	  			<interceptor-ref name="defaultStack"/>
+  	  			<interceptor-ref name="privilege"/>
+  	  		</interceptor-stack> 
+ 		</interceptors>
+ 		
+ 		        <!-- 定义全局变量 -->
+ 		<global-results>
+ 		<result name="pleaselogin">/login.jsp</result>
+ 		</global-results>
+         <action name="user_*" class="userAction" method="{1}">
+            <result name="success">/downMessages.jsp</result>
+            <result name="input">/login.jsp</result>
+            <result name="reg">/login.jsp</result>
+            <allowed-methods>login,reg</allowed-methods>
+         </action>
+         
+         <action name="messages_*" class="messagesAction" method="{1}"> 
+             <result name="findByusername">/showuserMessages.jsp</result>
+             <result name="delByid" type="chain" >messages_findByusername</result>
+             <result name="findByid">/updatemessage.jsp</result>   
+             <result name="update" type="chain">messages_findByusername</result> 
+             <result name="save">/showMessages.jsp</result>   
+             <result name="findall">/showMessages.jsp</result> 
+             
+              <interceptor-ref name="myStack"/>   
+             <allowed-methods>save,update,findByid,delByid,findall,findByusername</allowed-methods>
+         </action>
+      
+      
+      </package>
+         
+  
+  </struts>
+ 
